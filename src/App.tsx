@@ -1,26 +1,33 @@
+// src/App.tsx
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Projects from './pages/Projects';
+import Education from './pages/Education';
+import About from './pages/About';
+import NotFound from './pages/NotFound';
 
-function App() {
+/**
+ * Render the main App component with different routes and components.
+ *
+ * @return {JSX.Element} The rendered main component.
+ */
+const App: React.FC = (): JSX.Element => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/projects" element={<Projects/>} />
+        <Route path="/education" element={<Education/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="*" element={<NotFound/>} />
+      </Routes>
+      <Footer />
+    </Router>
   );
-}
+};
 
 export default App;
